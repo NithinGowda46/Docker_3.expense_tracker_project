@@ -3,11 +3,8 @@ services:
     restart: always
     image: mysql:latest
     container_name: mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: expenses_tracker
-      MYSQL_USER: nithin
-      MYSQL_PASSWORD: nithin
+    env_file:
+      - .env
     volumes:
       - ./mysql-data:/var/lib/mysql
     healthcheck:
@@ -23,10 +20,8 @@ services:
     build: .
     image: nithingowda46/expensetracker:latest
     container_name: Expensetracker
-    environment:
-      SPRING_DATASOURCE_USERNAME: nithin
-      SPRING_DATASOURCE_URL: "jdbc:mysql://mysql:3306/expenses_tracker?allowPublicKeyRetrieval=true&useSSL=false"
-      SPRING_DATASOURCE_PASSWORD: nithin
+    env_file:
+      - .env
     ports:
       - "8081:8080"
     depends_on:
