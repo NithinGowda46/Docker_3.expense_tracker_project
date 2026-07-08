@@ -6,7 +6,7 @@ services:
     env_file:
       - .env
     volumes:
-      - ./mysql-data:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
     healthcheck:
       test: ["CMD","mysqladmin","ping","-h","localhost","-unithin","-pnithin"]
       interval: 10s
